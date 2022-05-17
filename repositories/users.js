@@ -11,17 +11,17 @@ class UsersRepository {
     }
 
     this.filename = filename;
-
     try {
       fs.accessSync(this.filename);
     } catch (err) {
       fs.writeFileSync(this.filename, '[]');
     }
   }
+
   async getAll() {
     return JSON.parse(
       await fs.promises.readFile(this.filename, {
-        encoding: 'utf-8',
+        encoding: 'utf8',
       })
     );
   }
@@ -35,7 +35,7 @@ class UsersRepository {
     const records = await this.getAll();
     const record = {
       ...attrs,
-      password: `${buf.toString('hex')}.${salt}}`,
+      password: `${buf.toString('hex')}.${salt}`,
     };
     records.push(record);
 
@@ -44,12 +44,22 @@ class UsersRepository {
     return record;
   }
 
+  async comparePasswords(saved, supplied) {
+    const [hashed, salt] = saved.split('.');
+    const hashedSuppliedBuf = await scrypt(supplied, salt, 64);
+    console.log(hashedSuppliedBuf);
+    console.log(hashed);
+
+    return hashed === hashedSuppliedBuf.toString('hex');
+  }
+
   async writeAll(records) {
     await fs.promises.writeFile(
       this.filename,
       JSON.stringify(records, null, 2)
     );
   }
+
   randomId() {
     return crypto.randomBytes(4).toString('hex');
   }
