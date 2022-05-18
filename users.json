@@ -1,7 +1,17 @@
 [
   {
-    "email": "mari",
+    "email": "mari@gmail.com",
     "password": "2df35cd82dc20df5b7af7922febb7810ecba6ec21a2340fa33ddd8e6ccb9ab71ad73b980106f6bc22183532df3af5234caf4c8c75984a58fb8815e10e7b055a3.56455b8fd416c4fc",
     "id": "620b02eb"
+  },
+  {
+    "email": "mari2@gmail.com",
+    "password": "9a76ef7b18e70053d2e8ac420cb67702d338d25dbd15df72f808237344cdb824858b150e449c08ae70652c2a700cfa47447a59c0b84141d6424b561573dd2438.1d6aa7e52c5b429d",
+    "id": "1386019f"
+  },
+  {
+    "email": "mari3@gmail.com",
+    "password": "e743c03e0049aae44846abdb75bb95d977b669765ede8646f0d2fcd19168e53ea004aeeed2dde5d491b89e0adf8f9357870987224c8380edaae3661f98d3941c.030f4ab0e136fa2b",
+    "id": "4beaf505"
   }
 ]
