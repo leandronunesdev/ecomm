@@ -4,7 +4,7 @@ const usersRepo = require('../../repositories/users');
 module.exports = {
   requireTitle: check('title')
     .trim()
-    .isLength({ min: 5, max: 20 })
+    .isLength({ min: 5, max: 40 })
     .withMessage('Must be between 5 and 40 characters'),
   requirePrice: check('price')
     .trim()
@@ -30,12 +30,9 @@ module.exports = {
     .trim()
     .isLength({ min: 4, max: 20 })
     .withMessage('Must be between 4 and 20 characters')
-    .custom((passwordConfirmation, { req }) => {
-      console.log(passwordConfirmation, req.body.password);
+    .custom(async (passwordConfirmation, { req }) => {
       if (passwordConfirmation !== req.body.password) {
         throw new Error('Passwords must match');
-      } else {
-        console.log('test');
       }
     }),
   requireEmailExists: check('email')

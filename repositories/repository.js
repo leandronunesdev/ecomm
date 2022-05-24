@@ -19,7 +19,7 @@ module.exports = class Repository {
     attrs.id = this.randomId();
 
     const records = await this.getAll();
-    records.push(attr);
+    records.push(attrs);
     await this.writeAll(records);
 
     return attrs;
@@ -30,6 +30,13 @@ module.exports = class Repository {
       await fs.promises.readFile(this.filename, {
         encoding: 'utf8',
       })
+    );
+  }
+
+  async writeAll(records) {
+    await fs.promises.writeFile(
+      this.filename,
+      JSON.stringify(records, null, 2)
     );
   }
 
